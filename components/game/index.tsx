@@ -5,7 +5,7 @@ import React, {
     Dispatch,
     SetStateAction,
 } from "react";
-import { Deck, Hand, DeckType, HandType as HandObjType } from "hooks/poker";
+import { Deck, Hand, HandType as HandObjType } from "hooks/poker";
 import Button from "react-bootstrap/Button";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
