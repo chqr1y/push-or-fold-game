@@ -11,6 +11,7 @@ import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Card from "react-bootstrap/Card";
 import { ScoreType } from "containers/game";
+import * as gtag from "utils/gtag";
 import HandCard from "./hand-card";
 import Modal from "./modal";
 
@@ -70,9 +71,21 @@ const Game: FC<Props> = ({ range, stack, newGame, setScore }) => {
         ) {
             setResult({ action: value, success: true });
             setScore((prev) => ({ ...prev, good: prev.good + 1 }));
+            gtag.event({
+                action: "submit",
+                category: "small blind",
+                label: value,
+                value: 1,
+            });
         } else {
             setResult({ action: value, success: false });
             setScore((prev) => ({ ...prev, bad: prev.bad + 1 }));
+            gtag.event({
+                action: "submit",
+                category: "small blind",
+                label: value,
+                value: 0,
+            });
         }
         setShowModal(true);
     };
