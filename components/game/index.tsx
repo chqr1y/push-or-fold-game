@@ -50,10 +50,7 @@ const Game: FC<Props> = ({ range, stack, newGame, setScore }) => {
         const deck: Deck = new Deck();
         deck.make_random();
         /* eslint-disable-next-line */
-        const handObj: HandObjType = new Hand(
-            deck.draw(),
-            deck.draw()
-        );
+        const handObj: HandObjType = new Hand(deck.draw(), deck.draw());
         setHand({
             first: handObj.getFirst(),
             second: handObj.getSecond(),

@@ -42,7 +42,7 @@ const Main: FC = () => {
     if (isLoaded) {
         return (
             <>
-                <Container>
+                <Container className="mt-3">
                     <Row className="justify-content-md-center">
                         <Col md lg="6">
                             <Game
