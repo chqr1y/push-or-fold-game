@@ -22,7 +22,7 @@ export type HandType = {
 
 export type ResultType = {
     action: string;
-    success: false;
+    success: boolean;
 };
 
 type Props = {
@@ -47,10 +47,10 @@ const Game: FC<Props> = ({ range, stack, newGame, setScore }) => {
 
     useEffect(() => {
         /* eslint-disable-next-line */
-        const deck: DeckType = new Deck<DeckType>();
+        const deck: Deck = new Deck();
         deck.make_random();
         /* eslint-disable-next-line */
-        const handObj: HandObjType = new Hand<HandObjType>(
+        const handObj: HandObjType = new Hand(
             deck.draw(),
             deck.draw()
         );
@@ -66,7 +66,7 @@ const Game: FC<Props> = ({ range, stack, newGame, setScore }) => {
         }
     }, [hand]);
     const handlePushOrFold = (value: string) => {
-        const isInRange: string = range.includes(hand.atomicFormat);
+        const isInRange: boolean = range.includes(hand.atomicFormat);
         if (
             (isInRange && value === "push") ||
             (isInRange === false && value === "fold")

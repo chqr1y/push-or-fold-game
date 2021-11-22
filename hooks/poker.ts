@@ -3,15 +3,15 @@ import rangePush from "public/data/range-push.json";
 const suits = ["c", "d", "h", "s"];
 const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
 
-const product = (array1, array2) => {
-    const result = [];
+const product = (array1: string[], array2: string[]) => {
+    const result: string[] = [];
     array1.forEach((value1) =>
         array2.forEach((value2) => result.push(value1 + value2))
     );
     return result;
 };
 
-const shuffle = (array) => {
+const shuffle = (array: any[]) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const temp = array[i];
@@ -29,13 +29,13 @@ class Card {
         this.rank = card[0];
         this.suit = card[1];
     }
-    lt(card) {
+    lt(card: Card) {
         return ranks.indexOf(this.rank) < ranks.indexOf(card.rank);
     }
-    gt(card) {
+    gt(card: Card) {
         return ranks.indexOf(this.rank) > ranks.indexOf(card.rank);
     }
-    eq(card) {
+    eq(card: Card) {
         return ranks.indexOf(this.rank) === ranks.indexOf(card.rank);
     }
 }
@@ -46,7 +46,9 @@ export interface HandType {
     toAtomicFormat: () => string;
 }
 
-class Hand implements HandType {
+export class Hand implements HandType {
+    first;
+    second;
     constructor(card1: string, card2: string) {
         this.first = new Card(card1);
         this.second = new Card(card2);
@@ -80,7 +82,8 @@ export interface DeckType {
     draw: () => string;
 }
 
-class Deck implements DeckType {
+export class Deck implements DeckType {
+    cards;
     constructor() {
         this.cards = product(ranks, suits);
     }
@@ -88,11 +91,11 @@ class Deck implements DeckType {
         shuffle(this.cards);
     }
     draw() {
-        return this.cards.pop();
+        return this.cards.pop() as string;
     }
 }
 
-const getRange: string[] = (stack) => {
+export const getRange = (stack: number) => {
     const ranks = [
         "A",
         "K",
@@ -121,10 +124,4 @@ const getRange: string[] = (stack) => {
             line.filter((value, x) => rangePush[y][x] >= stack)
         )
     );
-};
-
-module.exports = {
-    Deck,
-    Hand,
-    getRange,
 };
