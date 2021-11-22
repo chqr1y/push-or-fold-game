@@ -1,0 +1,7 @@
+.pokercard {
+    border: 5px solid #555;
+    height: 150px;
+    width: 110px;
+    position: relative;
+    margin-right: 8px;
+}
